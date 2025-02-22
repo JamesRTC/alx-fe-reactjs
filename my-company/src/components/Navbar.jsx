@@ -5,16 +5,16 @@ export default function Navbar() {
     <nav>
       <ul style={{ listStylType: "none", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <li>
-          <NavLink>Home</NavLink>
+          <NavLink to="/home">Home</NavLink>
         </li>
         <li>
-          <NavLink>About</NavLink>
+          <NavLink to="/about">About</NavLink>
         </li>
         <li>
-          <NavLink>Contact</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </li>
         <li>
-          <NavLink>Service</NavLink>
+          <NavLink to="/service">Service</NavLink>
         </li>
       </ul>
     </nav>
