@@ -3,9 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
-  username: Yup.string().trim().required("Username is required"),
-  email: Yup.string().trim().email("Invalid email format").required("Email is required"),
-  password: Yup.string().trim().min(6, "Password must be at least 6 characters").required("Password is required"),
+  username: Yup.string().required("Username is required"),
+  email: Yup.string().email("Invalid email format").required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 const FormikForm = () => {
@@ -18,8 +18,8 @@ const FormikForm = () => {
         resetForm();
       }}
     >
-      {({ isSubmitting }) => (
-        <Form>
+      {({ handleSubmit }) => (
+        <Form onSubmit={handleSubmit}>
           <div>
             <label>Username:</label>
             <Field type="text" name="username" />
@@ -38,9 +38,7 @@ const FormikForm = () => {
             <ErrorMessage name="password" component="p" style={{ color: "red" }} />
           </div>
 
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Register"}
-          </button>
+          <button type="submit">Register</button>
         </Form>
       )}
     </Formik>
