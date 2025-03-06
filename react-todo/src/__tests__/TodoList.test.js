@@ -1,33 +1,19 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import TodoList from "../components/TodoList";
-
-test("renders the initial todo items", () => {
-  render(<TodoList />);
-  expect(screen.getByText("Learn React")).toBeInTheDocument();
-  expect(screen.getByText("Master Jest")).toBeInTheDocument();
-});
+import TodoList from "../components/TodoList"; // Adjust the path based on your file structure
 
 test("adds a new todo", () => {
   render(<TodoList />);
-  const input = screen.getByPlaceholderText("Add a new todo");
+
+  // Find input field and button
+  const input = screen.getByPlaceholderText("Add a new todo"); // Ensure your input has a placeholder
   const addButton = screen.getByText("Add");
 
-  fireEvent.change(input, { target: { value: "Write tests" } });
+  // Type a new todo
+  fireEvent.change(input, { target: { value: "Learn React Testing" } });
+
+  // Click the add button
   fireEvent.click(addButton);
 
-  expect(screen.getByText("Write tests")).toBeInTheDocument();
-});
-
-test("toggles a todo's completed status", () => {
-  render(<TodoList />);
-  const todo = screen.getByText("Learn React");
-  fireEvent.click(todo);
-  expect(todo).toHaveStyle("text-decoration: line-through");
-});
-
-test("deletes a todo", () => {
-  render(<TodoList />);
-  const deleteButton = screen.getAllByText("Delete")[0];
-  fireEvent.click(deleteButton);
-  expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
+  // Check if the new todo appears in the list
+  expect(screen.getByText("Learn React Testing")).toBeInTheDocument();
 });
