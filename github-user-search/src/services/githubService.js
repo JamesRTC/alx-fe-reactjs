@@ -16,7 +16,7 @@ const fetchUsers = async (username, location, minRepos) => {
     }
 
     // Ensure the query is correctly formatted
-    const apiUrl = `${GITHUB_API_BASE_URL}/search/users?${query}`;
+    const apiUrl = `"https://api.github.com/search/users?q"`;
 
     console.log("GitHub API Request:", apiUrl); // Debugging log
 
