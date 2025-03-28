@@ -4,6 +4,7 @@ const GITHUB_API_BASE_URL = "https://api.github.com";
 
 const fetchUsers = async (username, location, minRepos) => {
   try {
+    // Construct the search query
     let query = `q=${username}`;
 
     if (location) {
@@ -14,8 +15,12 @@ const fetchUsers = async (username, location, minRepos) => {
       query += `+repos:>=${minRepos}`;
     }
 
-    const response = await axios.get(`${GITHUB_API_BASE_URL}/search/users?${query}`);
+    // Ensure the query is correctly formatted
+    const apiUrl = `${GITHUB_API_BASE_URL}/search/users?${query}`;
 
+    console.log("GitHub API Request:", apiUrl); // Debugging log
+
+    const response = await axios.get(apiUrl);
     return response.data.items || [];
   } catch (error) {
     console.error("Error fetching GitHub users:", error);
