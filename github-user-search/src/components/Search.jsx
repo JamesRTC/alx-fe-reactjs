@@ -1,5 +1,5 @@
 import { useState } from "react";
-import fetchUsers from "../services/githubService"; // Import the correct function
+import fetchUserData from "../services/githubService"; // Correct import
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +15,10 @@ const Search = () => {
     setError("");
 
     try {
-      const result = await fetchUsers(username, location, minRepos);
+      const result = await fetchUserData(username, location, minRepos);
+      if (result.length === 0) {
+        setError("Looks like we can't find the user");
+      }
       setUsers(result);
     } catch (err) {
       setError("Looks like we can't find the user");
